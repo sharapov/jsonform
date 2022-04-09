@@ -1,12 +1,13 @@
-            function parseObjs(obj) {
+            function parseObjs(obj, parname) {
                 for (var i in obj) {
-                    //alert(typeof obj[i] + ' ' + i + '=' + obj[i]);
-                    if (typeof obj[i] === 'object') {
-                        parseObjs(obj[i]);
+                    if (obj[i] instanceof Array) {
+                        if (obj instanceof Array)
+                            parseObjs(obj[i], i);
+                    } else if (obj[i] instanceof Object) {
+                        if (obj instanceof Object && obj[i] instanceof Array)
+                            parseObjs(obj[i], i);
                     } else if (obj.hasOwnProperty(i)) {
-                        //console.log('obj[' + i + '] = ' + xmldata[i]);                              
-                        //alert(document.getElementById(i));
-                        if (document.getElementById(i) !== null) { // && $("'#"+i+"'").value)
+                        if (document.getElementById(i) !== null) {
                             $("#" + i).prop('value', obj[i]);
                         }
                     }
