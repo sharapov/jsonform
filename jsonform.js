@@ -14,3 +14,20 @@
                 }
 
             }
+
+            /**
+             * Содает из обычного массива индексированный
+             * @param {type} formArray массив для индексации
+             * @param {type} ifield поле по которому индексируем
+             * @returns индексированный массив
+             */
+            function objectifyJson(formArray, ifield) {
+                var returnArray = {};
+                for (var i = 0; i < formArray.length; i++) {
+                    if (formArray[i][ifield]) {
+                        returnArray[formArray[i][ifield]] = formArray[i];
+                    }
+                }
+                return returnArray;
+            }
+
