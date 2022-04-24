@@ -36,3 +36,13 @@
                 return returnArray;
             }
 
+function inputsToObj(arr, obj){
+var jsonForm={};
+arr.each(function(index){
+   jsonForm[$(this).attr("id")] = this.value;
+   if(obj[$(this).attr("id")])obj[$(this).attr("id")]=this.value;
+});
+return jsonForm;
+}
+
+
