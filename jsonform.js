@@ -45,4 +45,28 @@ arr.each(function(index){
 return jsonForm;
 }
 
+ function fillObjFromForm(obj, parname, arr) {
+                for (var i in obj) {
+                    if (obj[i] instanceof Array) {
+                        if (obj instanceof Array)
+                            fillObjFromForm(obj[i], i, arr);
+                    } else if (obj[i] instanceof Object) {
+                        if (obj instanceof Object && obj[i] instanceof Array)
+			 for (var i1 in obj[i])fillObjFromForm(obj[i][i1], i1, arr);
+			else fillObjFromForm(obj[i], i, arr);
+                    } else if (obj.hasOwnProperty(i)) {
+                        if (document.getElementById(i) !== null) {
+				if(obj[i] !== undefined){
+				if($("#" + i).prop('type') === 'checkbox')
+					obj[i]=$("#" + i).is(':checked');
+				else
+					obj[i]=$("#" + i).prop('value');
+				}
+                        }
+                    }
+                }
+
+return obj;            
+}
+
 
